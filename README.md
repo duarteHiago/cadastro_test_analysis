@@ -62,7 +62,7 @@ Para executar este projeto, siga os seguintes passos:
    ```
 4. Execute os testes:
    ```bash
-   npm test # ou yarn test, dependendo do gerenciador de pacotes
+   dotnet test # ou yarn test, dependendo do gerenciador de pacotes
    ```
 
 ## Conclusão
