@@ -142,3 +142,4 @@ E:\Documentos\Estudos\Programacao\C#\cadastro-test-analysis\cadastro-test-analys
 E:\Documentos\Estudos\Programacao\C#\cadastro-test-analysis\cadastro-test-analysis\obj\Debug\net9.0\cadastro-test-analysis.pdb
 E:\Documentos\Estudos\Programacao\C#\cadastro-test-analysis\cadastro-test-analysis\obj\Debug\net9.0\cadastro-test-analysis.genruntimeconfig.cache
 E:\Documentos\Estudos\Programacao\C#\cadastro-test-analysis\cadastro-test-analysis\obj\Debug\net9.0\ref\cadastro-test-analysis.dll
+E:\Documentos\Estudos\Programacao\C#\cadastro-test-analysis\cadastro-test-analysis\obj\Debug\net9.0\cadastro-test-analysis.sourcelink.json
