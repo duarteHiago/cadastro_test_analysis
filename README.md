@@ -1,4 +1,4 @@
-# cadastro_test_analysis
+# Documentacao de Software: Sistema de Cadastro Genérico para Teste v0.1.
 
 Este repositório contém um projeto de teste desenvolvido para um artigo sobre **A IMPORTÂNCIA DO TESTE DE SOFTWARE E SUAS APLICABILIDADES NAS DIFERENTES ÁREAS DO DESENVOLVIMENTO DE SISTEMAS**.
 
