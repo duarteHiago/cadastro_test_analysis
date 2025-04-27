@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("cadastro-test-analysis")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f1ee684de9de1e3ca63bbe6ab5e3d25995ef545a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9222c6d3ead4dc4eae0ab151dd4e0b9fcf2baad9")]
 [assembly: System.Reflection.AssemblyProductAttribute("cadastro-test-analysis")]
 [assembly: System.Reflection.AssemblyTitleAttribute("cadastro-test-analysis")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
