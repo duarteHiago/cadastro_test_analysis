@@ -4,6 +4,9 @@ Este repositório contém um projeto de teste desenvolvido para um artigo sobre 
 
 *Link do Artigo: https://drive.google.com/file/d/11A53qX02cd0jh7ZSvndQmxmYzouFj2-w/view?usp=sharing*
 
+[Baixar arquivo](https://github.com/duarteHiago/cadastro_test_analysis/blob/ea86f68b8bc181aebe41bee2954c3797ed50ccda/artigoReferente/A%20IMPORT%C3%82NCIA%20DO%20TESTE%20DE%20SOFTWARE%20E%20SUAS%20APLICABILIDADES%20NA.pdf)
+
+
 ## 1- Visao Geral do Software
 
 Este software de cadastro foi desenvolvido utilizando a linguagem de programação C# e implementado com o auxílio do framework de automação de testes MSTest. Ele serve como um estudo de caso prático para ilustrar a importância e as diversas aplicações do teste de software no ciclo de desenvolvimento de sistemas. Longe de ser um sistema de cadastro completo para uso em produção, ele serve como um ambiente controlado para a aplicação e análise de diferentes tipos de testes.
