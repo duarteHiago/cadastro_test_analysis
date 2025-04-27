@@ -1,6 +1,7 @@
 # Documentacao de Software: Sistema de Cadastro Genérico para Teste v0.1.
 
 Este repositório contém um projeto de teste desenvolvido para um artigo sobre **A IMPORTÂNCIA DO TESTE DE SOFTWARE E SUAS APLICABILIDADES NAS DIFERENTES ÁREAS DO DESENVOLVIMENTO DE SISTEMAS**.
+*Link do Artigo: https://drive.google.com/file/d/11A53qX02cd0jh7ZSvndQmxmYzouFj2-w/view?usp=sharing*
 
 ## 1- Visao Geral do Software
 
