@@ -47,21 +47,75 @@ namespace CadastroTestProject.Services
 
             using var connection = _dbConnection.GetConnection();
 
-            var query = "SELECT * FROM usuarios WHERE usuario_login = @UsuarioLogin AND senha = @Senha";
-            using var command = new MySqlCommand(query, connection);
-            command.Parameters.AddWithValue("@UsuarioLogin", usuarioLogin);
-            command.Parameters.AddWithValue("@Senha", senha);
+            // Verificar tentativas falhas anteriores
+            var checkAttemptsQuery = "SELECT tentativas_falhas, bloqueado_ate FROM usuarios WHERE usuario_login = @UsuarioLogin";
+            using var checkCommand = new MySqlCommand(checkAttemptsQuery, connection);
+            checkCommand.Parameters.AddWithValue("@UsuarioLogin", usuarioLogin);
 
-            using var reader = command.ExecuteReader();
-
+            using var reader = checkCommand.ExecuteReader();
             if (reader.Read())
             {
-                var nome = reader.GetString("nome");
-                Console.WriteLine($"\nBem-vindo, {nome}!");
+                var tentativasFalhas = reader.GetInt32("tentativas_falhas");
+                var bloqueadoAte = reader["bloqueado_ate"] as DateTime?;
+
+                if (bloqueadoAte.HasValue && bloqueadoAte > DateTime.Now)
+                {
+                    Console.WriteLine("\nConta bloqueada. Tente novamente após: " + bloqueadoAte.Value);
+                    return;
+                }
+
+                reader.Close();
+
+                // Verificar credenciais
+                var query = "SELECT * FROM usuarios WHERE usuario_login = @UsuarioLogin AND senha = @Senha";
+                using var command = new MySqlCommand(query, connection);
+                command.Parameters.AddWithValue("@UsuarioLogin", usuarioLogin);
+                command.Parameters.AddWithValue("@Senha", senha);
+
+                using var loginReader = command.ExecuteReader();
+                if (loginReader.Read())
+                {
+                    Console.WriteLine("\nBem-vindo, " + loginReader.GetString("nome") + "!");
+
+                    // Resetar tentativas falhas após login bem-sucedido
+                    var resetAttemptsQuery = "UPDATE usuarios SET tentativas_falhas = 0, bloqueado_ate = NULL WHERE usuario_login = @UsuarioLogin";
+                    using var resetCommand = new MySqlCommand(resetAttemptsQuery, connection);
+                    resetCommand.Parameters.AddWithValue("@UsuarioLogin", usuarioLogin);
+                    resetCommand.ExecuteNonQuery();
+                }
+                else
+                {
+                    loginReader.Close();
+
+                    // Incrementar tentativas falhas
+                    tentativasFalhas++;
+                    Console.WriteLine($"Tentativas falhas após incremento: {tentativasFalhas}");
+
+                    var updateAttemptsQuery = "UPDATE usuarios SET tentativas_falhas = @TentativasFalhas WHERE usuario_login = @UsuarioLogin";
+                    if (tentativasFalhas >= 5)
+                    {
+                        updateAttemptsQuery = "UPDATE usuarios SET tentativas_falhas = @TentativasFalhas, bloqueado_ate = @BloqueadoAte WHERE usuario_login = @UsuarioLogin";
+                    }
+
+                    Console.WriteLine($"Consulta de atualização: {updateAttemptsQuery}");
+
+                    using var updateCommand = new MySqlCommand(updateAttemptsQuery, connection);
+                    updateCommand.Parameters.AddWithValue("@TentativasFalhas", tentativasFalhas);
+                    updateCommand.Parameters.AddWithValue("@UsuarioLogin", usuarioLogin);
+                    if (tentativasFalhas >= 5)
+                    {
+                        updateCommand.Parameters.AddWithValue("@BloqueadoAte", DateTime.Now.AddMinutes(15)); // Bloquear por 15 minutos
+                    }
+
+                    updateCommand.ExecuteNonQuery();
+                    Console.WriteLine("Consulta de atualização executada com sucesso.");
+
+                    Console.WriteLine("\nUsuário ou senha inválidos.");
+                }
             }
             else
             {
-                Console.WriteLine("\nUsuário ou senha inválidos.");
+                Console.WriteLine("\nUsuário não encontrado.");
             }
         }
 
